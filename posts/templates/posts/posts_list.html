@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    {{ all_posts }}
-</body>
-</html>
+{% extends 'posts/base.html' %}
+{% block content %}
+    <h1>My Blog Posts <small><a href="/posts/create">New Post</a></small></h1>
+    {% for post in all_posts %}
+        <div class="row">
+            <img src="{{ post.image.url }}" alt="" class="img-responsive">
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <h2><a href="{{ post.get_absolute_url }}">{{ post }}</a> <small> Written by {{ post.author }}</small></h2>
+            <p>{{ post.description }}</p>
+        </div>
+        <hr>
+    {% endfor %}
+{% endblock %}

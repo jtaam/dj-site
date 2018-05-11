@@ -1,21 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <p>
-        {{ post.title }}
-    </p>
-    <p>
-        {{ post.description }}
-    </p>
-    <p>
-        {{ post.author }}
-    </p>
-    <p>
-        <img src="{{ post.image }}" alt="">
-    </p>
-</body>
-</html>
+{% extends 'posts/base.html' %}
+{% block content %}
+    <div class="row">
+            <img src="{{ post.image.url }}" alt="" class="img-responsive">
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <h2>{{ post }} <small> Written by {{ post.author }} <a href="{{ post.get_update_url }}">Edit</a></small></h2>
+            <p>{{ post.description }}</p>
+        </div>
+    <a href="/posts/" class="btn btn-primary">Go Back To All Posts</a>
+    <a href="{{ post.get_delete_url }}" class="btn btn-default" onclick="confirm('Delete The Post?');">Delete</a>
+{% endblock %}
